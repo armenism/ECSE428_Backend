@@ -1,0 +1,60 @@
+namespace ca.mcgill.ecse428.snowmore.model;
+  
+  class User
+{
+  autounique id;
+  name;
+  address;
+  email;
+  phone;
+  password;
+  Integer rating;
+  }
+
+class Posting
+{
+  name;
+  address;
+  Date eventDate;
+  Time startTime;
+  Time endTime;
+}
+
+class Registration
+{
+  autounique id;
+  * -> 1 User user;
+  * -> 1 Posting posting;
+}
+
+class RegistrationManager
+{
+  1 -> * Registration registrations;
+  1 -> * User users;
+  1 -> * Posting postings;
+}//$?[End_of_model]$?
+
+class User
+{
+  position 50 27 128 158;
+}
+
+class Posting
+{
+  position 319 45 124 124;
+}
+
+class Registration
+{
+  position 402 295 109 56;
+  position.association Registration__User:user 30,0 136,136;
+  position.association Posting:posting__Registration 30,0 113,126;
+}
+
+class RegistrationManager
+{
+  position 50 330 109 45;
+  position.association Registration:registrations__RegistrationManager 143,8 0,43;
+  position.association Posting:postings__RegistrationManager 30,0 0,72;
+  position.association RegistrationManager__User:users 30,0 30,158;
+}
